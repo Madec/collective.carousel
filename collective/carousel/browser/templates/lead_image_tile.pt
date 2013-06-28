@@ -1,5 +1,6 @@
 <div class="leadimagetile"
      tal:define="item_url context/getURL|context/absolute_url;
+                 parent_url context/aq_parent/absolute_url;
                  item_type context/portal_type;
                  use_view_action site_properties/typesUseViewActionInListings|python:();
                  item_description context/Description;
@@ -8,14 +9,14 @@
 <h2 class="tileHeadline">
     <a href="#"
        class="summary url"
-       tal:attributes="href python:(item_type in use_view_action) and item_url+'/view' or item_url;"
+       tal:attributes="href python:(item_type in use_view_action) and parent_url+'/view' or parent_url;"
        tal:content="item_title_or_id">
         Item Title
     </a>
 </h2>
 
 <a href="#"
-   tal:attributes="href python:(item_type in use_view_action) and item_url+'/view' or item_url;">
+   tal:attributes="href python:(item_type in use_view_action) and parent_url+'/view' or parent_url;">
     <img src="" tal:condition="view/tag|nothing"
          tal:replace="structure python:path('nocall:view/tag')(css_class='')"
          alt="" />
@@ -32,7 +33,7 @@
 
 <p class="tileFooter">
     <a href=""
-       tal:attributes="href python:(item_type in use_view_action) and item_url+'/view' or item_url;"
+       tal:attributes="href python:(item_type in use_view_action) and parent_url+'/view' or parent_url;"
        i18n:translate="read_more">
     Read More&hellip;
     </a>
